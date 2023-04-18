@@ -5,7 +5,13 @@ for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
     for (let r = 1; r <= 15; r++) {
         const cell = document.createElement('td');
-        cell.id = `cell_${i}_${r}`;
+        let cellID = `cell_${i}_${r}`;
+        cell.id = cellID;
+        cell.addEventListener('click', () => {
+            console.log(cellID);
+            cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
+
+        });
         row.appendChild(cell);
     }
     table.appendChild(row);
