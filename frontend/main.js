@@ -1,3 +1,4 @@
+import init from './chat.js';
 import './style.css'
 
 const table = document.createElement('table');
@@ -15,3 +16,5 @@ document.body.appendChild(table);
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";
 document.body.appendChild(saveBtn);
+
+init();
