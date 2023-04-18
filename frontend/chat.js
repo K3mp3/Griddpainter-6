@@ -1,5 +1,7 @@
-import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
-const socket = io("http://localhost:3000");
+//import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+import {} from "./socket.io/socket.io.js"; 
+
+const socket = io();
 
 const chatContainer = document.createElement("div");
 const showChatBtn = document.createElement("button");
@@ -34,6 +36,18 @@ function sendChat(e) {
     const chatInput = document.querySelector(".chat-input");
 
     const chatMsg = chatInput.value;
+    console.log("chatMsg2", chatMsg);
 
     socket.emit("chat",{chat: chatMsg});
+
+    getChatMsg();
+}
+
+function getChatMsg() {
+    /*const chat = document.createElement("p");
+    chatContainer.appendChild(chat);
+
+    socket.on("chat message", function(msg) {
+        console.log("msg", msg);
+    })*/
 }
