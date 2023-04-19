@@ -1,5 +1,7 @@
 import init from "./chat.js";
 
+const gridTableContainer = document.querySelector('#grid-table') 
+
 const table = document.createElement('table');
 for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
@@ -16,7 +18,7 @@ for (let i = 1; i <= 15; i++) {
     }
     table.appendChild(row);
 }
-document.body.appendChild(table);
+gridTableContainer.appendChild(table);
 
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";
