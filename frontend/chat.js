@@ -49,7 +49,11 @@ function getChatMsg() {
     socket.on("chat", (arg) => {
     console.log("chat", arg);
 
-    chatOutput.innerHTML += "<li>" + arg.chat + " ---- from: " + arg.user + "</li>";
+    const username = document.createElement('p')
+    username.innerText = 
+    
+    chatOutput.classList.add('chat-msg')
+    chatOutput.innerHTML += "<li>" + arg.user + ": " + arg.chat + "</li>";
     console.log("chatOutput", chatOutput);
     chatBox.appendChild(chatOutput);
 })

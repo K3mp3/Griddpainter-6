@@ -29,6 +29,20 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.chat-msg li{
+  list-style: none;
+  height: 30px;
+  width: fit-content;
+  max-width: 300px;
+  padding: 8px;
+  line-height: 30px;
+  margin: 0 auto;
+  border: black solid 2px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
 .chat-input{
   height: 50px;
   width: 300px;
