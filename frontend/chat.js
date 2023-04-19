@@ -22,6 +22,7 @@ function createChat() {
     const sendChatBtn = document.createElement("button");
 
     chatInput.classList.add("chat-input");
+    sendChatBtn.classList.add('send-chat-btn')
 
     chatInput.placeholder = "Message";
     sendChatBtn.innerText = "Send chat";
