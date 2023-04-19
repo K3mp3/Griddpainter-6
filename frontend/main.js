@@ -1,6 +1,5 @@
 import init from "./chat.js";
 
-
 const table = document.createElement('table');
 for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');

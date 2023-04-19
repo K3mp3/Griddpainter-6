@@ -47,7 +47,7 @@ function getChatMsg() {
     socket.on("chat", (arg) => {
     console.log("chat", arg);
 
-    chatOutput.innerHTML = `${arg.chat} -- from ${arg.user}`;
+    chatOutput.innerHTML += "<li>" + arg.chat + " ---- from: " + arg.user + "</li>";
     console.log("chatOutput", chatOutput);
     chatContainer.appendChild(chatOutput);
 })
