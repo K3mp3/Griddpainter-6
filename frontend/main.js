@@ -1,23 +1,16 @@
-import './style.css'
+import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+const socket = io("http://localhost:3000");
 
-const table = document.createElement('table');
-for (let i = 1; i <= 15; i++) {
-    const row = document.createElement('tr');
-    for (let r = 1; r <= 15; r++) {
-        const cell = document.createElement('td');
-        let cellID = `cell_${i}_${r}`;
-        cell.id = cellID;
-        cell.addEventListener('click', () => {
-            console.log(cellID);
-            cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
+let sendMessage = document.getElementById("sendMessage");
+let sendBtn = document.getElementById("sendBtn");
+let messages = document.getElementById("messages");
 
-        });
-        row.appendChild(cell);
-    }
-    table.appendChild(row);
-}
-document.body.appendChild(table);
+socket.on("chat", (arg) => {
+    console.log("chat", arg);
 
-const saveBtn = document.createElement('button');
-saveBtn.innerText = "Save";
-document.body.appendChild(saveBtn);
+    messages.innerHTML += arg.chat + " | from: " + arg.user + "<br/>";
+})
+
+sendBtn.addEventListener("click", () => {
+    socket.emit("chat", {chat: sendMessage.value, user: "Janne"});
+})
