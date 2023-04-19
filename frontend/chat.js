@@ -3,6 +3,9 @@ const socket = io("http://localhost:3000");
 
 const chatContainer = document.createElement("div");
 const showChatBtn = document.createElement("button");
+const chatOutput = document.createElement("p");
+
+chatOutput.classList.add("chat-output");
 
 export default function init() {
     showChatBtn.innerText = "Chat";
@@ -29,21 +32,18 @@ function createChat() {
     sendChatBtn.addEventListener("click", sendChat);
 }
 
-function sendChat(e) {
+function sendChat() {
     const chatInput = document.querySelector(".chat-input");
 
     const chatMsg = chatInput.value;
     console.log("chatMsg2", chatMsg);
 
     socket.emit("chat", {chat: chatMsg, user: "User 1"});
-
-    getChatMsg();
 }
 
-function getChatMsg() {
-    const chatOutput = document.createElement("p");
+getChatMsg();
 
-    chatOutput.classList.add("chat-output");
+function getChatMsg() {
     socket.on("chat", (arg) => {
     console.log("chat", arg);
 
