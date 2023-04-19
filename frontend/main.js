@@ -1,19 +1,4 @@
-import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
-const socket = io("http://localhost:3000");
-
-let sendMessage = document.getElementById("sendMessage");
-let sendBtn = document.getElementById("sendBtn");
-let messages = document.getElementById("messages");
-
-socket.on("chat", (arg) => {
-    console.log("chat", arg);
-
-    messages.innerHTML += "<li>" + arg.chat + " ---- from: " + arg.user + "</li>";
-})
-
-sendBtn.addEventListener("click", () => {
-    socket.emit("chat", {chat: sendMessage.value, user: "User 1"});
-})
+import init from "./chat.js";
 
 
 const table = document.createElement('table');
@@ -37,3 +22,5 @@ document.body.appendChild(table);
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";
 document.body.appendChild(saveBtn);
+
+init();
