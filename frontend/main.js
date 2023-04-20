@@ -12,30 +12,15 @@ function landingPage() {
     let landingPage = document.createElement('div');
     landingPage.className = 'landing-page-container';
     landingPage.innerHTML = `
-    <form>
-    <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-3">Gridpainter 6</h1>
-      <p class="lead">Select a nickname and a color!!!</p>
-    </div>
-  </div>
-  <form id="form" class="row gx-3 gy-2 align-items-center">
-    <div class="col-sm-3">
-      <label class="visually-hidden" for="inputNickName">Username</label>
-      <div class="input-group">
-        <div class="input-group-text">@</div>
-        <input type="text" class="form-control" id="inputNickName" placeholder="Nickname">
-      </div>
-    </div>
-    <div class="col-sm-1">
-      <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your color">
-    </div>
+    <form id="form" class="row gx-3 gy-2 align-items-center">
+      <label class="visually-hidden" for="inputNickName">What's your nickname?</label></br>
+        <input type="text" class="form-control" id="inputNickName"> </br></br>
+      <label class="visually-hidden" for="colorInput">Choose a color</label>
+        <input type="color" class="form-control form-control-color" id="colorInput" value="#563d7c" title="Choose your color"></br></br>
 
-    <div class="col-auto">
-      <button id="submitBtn">Submit</button>
-    </div>
+        <button id="submitBtn">Join</button>
     </form>
-`;
+  `;
 
 
     firstPageContainer.appendChild(landingPage);
@@ -47,13 +32,17 @@ function landingPage() {
 
         const nickname = inputNickName.value;
         const color = colorInput.value;
-
         
         // Emit the nickname event to the server
         socket.emit('nickname', nickname);
 
         console.log(nickname + " " + color);
-    })
+
+        //show grid-and-chat-container if submit is pressed
+        const gridChatContainer = document.getElementById('gridChatContainer');
+        gridChatContainer.style.display = "flex";
+        landingPage.style.display = "none";
+    });
 
 };
 
@@ -82,7 +71,7 @@ gridTableContainer.appendChild(table);
 
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";
-document.body.appendChild(saveBtn);
+gridTableContainer.appendChild(saveBtn);
 
 
 init();
