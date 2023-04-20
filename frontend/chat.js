@@ -2,32 +2,34 @@ import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 const socket = io("http://localhost:3000");
 
 const chatContainer = document.createElement("div");
-const showChatBtn = document.createElement("button");
 const chatOutput = document.createElement("p");
+const writeMessageBox = document.querySelector('#write-message-box'); 
+const chatBox = document.querySelector('#chat-box');
 
 chatOutput.classList.add("chat-output");
 
 export default function init() {
     showChatBtn.innerText = "Chat";
 
-    document.body.appendChild(chatContainer)
-    chatContainer.appendChild(showChatBtn)
+    chatBox.appendChild(chatContainer)
+    chatBox.appendChild(showChatBtn)
     
-    showChatBtn.addEventListener("click", createChat)
 }
+
 
 function createChat() {
     const chatInput = document.createElement("input");
     const sendChatBtn = document.createElement("button");
 
     chatInput.classList.add("chat-input");
+    sendChatBtn.classList.add('send-chat-btn')
 
     chatInput.placeholder = "Message";
     sendChatBtn.innerText = "Send chat";
 
 
-    chatContainer.appendChild(chatInput);
-    chatContainer.appendChild(sendChatBtn);
+    writeMessageBox.appendChild(chatInput);
+    writeMessageBox.appendChild(sendChatBtn);
 
     sendChatBtn.addEventListener("click", sendChat);
 }
@@ -49,8 +51,14 @@ function getChatMsg() {
     socket.on("chat", (arg) => {
     console.log("chat", arg);
 
-    chatOutput.innerHTML += "<li>" + arg.chat + " ---- from: " + arg.user + "</li>";
+    const username = document.createElement('p')
+    username.innerText = 
+    
+    chatOutput.classList.add('chat-msg')
+    chatOutput.innerHTML += "<li>" + arg.user + ": " + arg.chat + "</li>";
     console.log("chatOutput", chatOutput);
-    chatContainer.appendChild(chatOutput);
+    chatBox.appendChild(chatOutput);
 })
 }
+
+createChat();

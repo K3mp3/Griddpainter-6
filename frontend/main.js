@@ -3,6 +3,8 @@ import init from "./chat.js";
 import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 const socket = io("http://localhost:3000");
 
+const gridTableContainer = document.querySelector('#grid-table') 
+
 // landingpage
 const firstPageContainer = document.getElementById('firstPageContainer');
 
@@ -76,7 +78,7 @@ for (let i = 1; i <= 15; i++) {
     }
     table.appendChild(row);
 }
-document.body.appendChild(table);
+gridTableContainer.appendChild(table);
 
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";

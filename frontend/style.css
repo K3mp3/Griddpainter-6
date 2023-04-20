@@ -1,3 +1,71 @@
+/* Grid and chat page */
+.grid-and-chat-container{
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* chat */
+
+.chat-container{
+  height: 540px;
+  width: 500px;
+  background-color: rgb(145, 24, 24);
+  margin-top: 80px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ 
+}
+
+.chat-box{
+  margin: 0 auto;
+  margin-top: 20px;
+  height: 400px;
+  width: 400px;
+  background-color: white;
+  border: black solid 2px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.chat-msg li{
+  list-style: none;
+  height: 30px;
+  width: fit-content;
+  max-width: 300px;
+  padding: 8px;
+  line-height: 30px;
+  margin: 0 auto;
+  border: black solid 2px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.chat-input{
+  height: 50px;
+  width: 300px;
+  margin-top: 30px;
+  margin-left: 50px;
+  border: black solid 2px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.send-chat-btn{
+  height: 50px;
+  width: 80px;
+  background-color: black;
+  color: white;
+  border: none;
+  margin-left: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+}
+
+/* grid */
 td {border: 1px solid black; width: 30px; height: 30px;}
 
 .red {
