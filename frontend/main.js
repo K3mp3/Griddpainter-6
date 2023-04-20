@@ -45,6 +45,7 @@ function landingPage() {
 
         const nickname = inputNickName.value;
         const color = colorInput.value;
+
         
         // Emit the nickname event to the server
         socket.emit('nickname', nickname);
@@ -66,7 +67,9 @@ for (let i = 1; i <= 15; i++) {
         cell.id = cellID;
         cell.addEventListener('click', () => {
             console.log(cellID);
-            cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
+            console.log("colorInput", colorInput.value, colorInput);
+            cell.style.background = colorInput.value;
+            //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
 
         });
         row.appendChild(cell);
