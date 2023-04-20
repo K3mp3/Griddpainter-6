@@ -1,5 +1,8 @@
 import init from "./chat.js";
 
+import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+const socket = io("http://localhost:3000");
+
 // landingpage
 const firstPageContainer = document.getElementById('firstPageContainer');
 
@@ -36,14 +39,17 @@ function landingPage() {
     firstPageContainer.appendChild(landingPage);
 
     const submitBtn = document.getElementById('submitBtn');
-    const inputNickName = document.getElementById('inputNickName');
-    const colorInput = document.getElementById('colorInput');
 
     submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        console.log('click');
-        console.log(inputNickName.value + " " + colorInput.value);
+        const nickname = inputNickName.value;
+        const color = colorInput.value;
+        
+        // Emit the nickname event to the server
+        socket.emit('nickname', nickname);
+
+        console.log(nickname + " " + color);
     })
 
 };
