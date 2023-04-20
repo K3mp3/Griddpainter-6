@@ -39,7 +39,9 @@ function landingPage() {
     const inputNickName = document.getElementById('inputNickName');
     const colorInput = document.getElementById('colorInput');
 
-    submitBtn.addEventListener('click', () => {
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
         console.log('click');
         console.log(inputNickName.value + " " + colorInput.value);
     })
