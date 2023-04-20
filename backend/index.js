@@ -13,8 +13,11 @@ const io = require("socket.io")(server, {
     }
 });
 
+// Listen for a connection event
 io.on("connection", (socket) => {
-    console.log("Någon är här!");
+    socket.on('nickname', (nickname) => {
+        console.log(`${nickname} has connected to the chat`);
+    })
 
     socket.emit("chat", {chat: "Welcome", user: "Server-bot"})
 
