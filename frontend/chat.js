@@ -34,11 +34,13 @@ function createChat() {
 
 function sendChat() {
     const chatInput = document.querySelector(".chat-input");
+    const inputNickName = document.querySelector('#inputNickName');
 
     const chatMsg = chatInput.value;
+    const nickname = inputNickName.value;
     console.log("chatMsg2", chatMsg);
 
-    socket.emit("chat", {chat: chatMsg, user: "User 1"});
+    socket.emit("chat", {chat: chatMsg, user: nickname});
 }
 
 getChatMsg();
