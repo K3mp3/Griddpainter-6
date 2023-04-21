@@ -59,6 +59,7 @@ landingPage();
 
 
 const table = document.createElement('table');
+console.log("table", table);
 for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
     for (let r = 1; r <= 15; r++) {
@@ -76,11 +77,29 @@ for (let i = 1; i <= 15; i++) {
     }
     table.appendChild(row);
 }
+
 document.body.appendChild(table);
 
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";
 document.body.appendChild(saveBtn);
 
+saveBtn.addEventListener("click", saveTable);
+
+function saveTable() {
+  console.log("table", table);
+
+  fetch("http://localhost:3000/grid/saveTable", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({table: table}),
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("data", data);
+  })
+}
 
 init();
