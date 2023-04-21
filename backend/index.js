@@ -29,8 +29,10 @@ io.on("connection", (socket) => {
     })
 })
 
-app.post("/savetable", function(req, res) {
-    res.json("funkar");
+io.on("connection", (socket) => {
+    socket.on("table", (arg) => {
+        console.log("incoming table", arg);
+    })
 })
 
 server.listen(3000);

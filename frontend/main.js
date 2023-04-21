@@ -58,11 +58,11 @@ for (let i = 1; i <= 15; i++) {
         let cellID = `cell_${i}_${r}`;
         cell.id = cellID;
         cell.addEventListener('click', () => {
-            console.log(cellID);
+            console.log("cellID", cellID);
             console.log("colorInput", colorInput.value, colorInput);
             cell.style.background = colorInput.value;
             //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
-
+          saveTable(cellID);
         });
         row.appendChild(cell);
     }
@@ -77,10 +77,11 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
-function saveTable() {
+function saveTable(cellId) {
+  console.log("cellId saveTable", cellId);
   console.log("table", table);
 
-  
+  socket.emit("table", {table: table, color: colorInput.value, cellId: cellId})  
 }
 
 init();
