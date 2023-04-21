@@ -3,9 +3,6 @@ const server = require("http").createServer(app);
 const connection = require("./conn");
 const mysql = require("mysql2")
 
-const gridRouter = require("./routes/grid")
-
-app.use("/grid", gridRouter);
 
 app.get("/", (req, res) => {
 
@@ -14,7 +11,7 @@ app.get("/", (req, res) => {
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://127.0.0.1:5500",
+        origin: "http://192.168.0.145:5500",
         methods: ["GET", "POST"]
     }
 });
