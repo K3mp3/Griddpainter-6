@@ -80,17 +80,7 @@ saveBtn.addEventListener("click", saveTable);
 function saveTable() {
   console.log("table", table);
 
-  fetch("http://localhost:3000/grid/saveTable", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({table: table}),
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log("data", data);
-  })
+  
 }
 
 init();
