@@ -19,6 +19,7 @@ const io = require("socket.io")(server, {
 io.on("connection", (socket) => {
     socket.on('nickname', (nickname) => {
         console.log(`${nickname} has connected to the chat`);
+        io.emit("chat", {user: `${nickname}`, chat: "has connected to the chat."})
     })
 
     socket.emit("chat", {chat: "Welcome", user: "Server-bot"})
