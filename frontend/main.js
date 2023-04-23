@@ -78,19 +78,21 @@ gridTableContainer.appendChild(saveBtn);
 saveBtn.addEventListener("click", saveTable);
 
 function saveTable() {
-  console.log("table", table);
+  let savedTable = [];
+  const tdId = document.querySelectorAll("td")
 
-  fetch("http://localhost:3000/grid/saveTable", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({table: table}),
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log("data", data);
-  })
+    
+  for (let i = 0; i < tdId.length ; i++) {
+    let id = tdId[i].id
+    let color = tdId[i].style.background
+    
+    let obj = {
+      id: id,
+      color: color
+    }
+    
+    savedTable.push(obj)
+  }
 }
 
 init();
