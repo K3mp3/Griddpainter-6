@@ -52,6 +52,7 @@ landingPage();
 showGrid();
 
 function showGrid() {
+  console.log("showGrid");
   for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
     for (let r = 1; r <= 15; r++) {
@@ -61,11 +62,12 @@ function showGrid() {
         cell.addEventListener("click", test);
         row.appendChild(cell);
     }
+    table.appendChild(row);
   }
-  socket.emit("table", {table: table})
+  //socket.emit("grid", {grid: table})
   //console.log("table 1", table);
 
-gridTableContainer.appendChild(table); 
+  gridTableContainer.appendChild(table); 
 }
 
 function test(e) {
