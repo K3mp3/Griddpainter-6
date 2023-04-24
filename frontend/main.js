@@ -62,7 +62,7 @@ for (let i = 1; i <= 15; i++) {
             console.log("colorInput", colorInput.value, colorInput);
             cell.style.background = colorInput.value;
             //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
-          saveTable(cellID);
+            saveTableToServer(cellID);
         });
         row.appendChild(cell);
     }
@@ -77,7 +77,13 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
+function saveTableToServer(cellId) {
+  console.log("cellId saveTableToServer", cellId);
+  socket.emit("table", {table: table, color: colorInput.value, cellId: cellId})  
+}
+
 function saveTable() {
+  console.log('test');
   let savedTable = [];
   const tdId = document.querySelectorAll("td")
 
