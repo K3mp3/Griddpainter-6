@@ -77,8 +77,10 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
+let savedTable = [];
+
 function saveTable() {
-  let savedTable = [];
+  
   const tdId = document.querySelectorAll("td")
 
     
@@ -92,7 +94,9 @@ function saveTable() {
     }
     
     savedTable.push(obj)
-  }
+    
+  }console.log(savedTable)
+  
 }
 
 init();
