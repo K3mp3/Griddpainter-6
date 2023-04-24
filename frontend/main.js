@@ -87,27 +87,31 @@ function saveTableToServer(cellId) {
 function getTable() {
   socket.on("table", function(table) {
     console.log("table", table);
+
     
   })
 }
 
-function saveTable() {
-  console.log('test');
-  let savedTable = [];
-  const tdId = document.querySelectorAll("td")
 
-    
+function saveTable() {
+  const tdId = document.querySelectorAll("td");
+  let savedTable = [];
+
   for (let i = 0; i < tdId.length ; i++) {
-    let id = tdId[i].id
-    let color = tdId[i].style.background
-    
-    let obj = {
-      id: id,
-      color: color
+    let id = tdId[i].id;
+    let color = tdId[i].style.background;
+
+    // går igenom en if-sats och kolla om varje cell som ha en background-style property(dvs om den är färglagd), så läggs den till i savedTable arrayn.
+    if(color) {
+      const obj = { 
+        id, color 
+      };
+      savedTable.push(obj)
     }
-    
-    savedTable.push(obj)
+
   }
+  // savedTable sparar id och color som ett objekt, därför måste vi konvertera det till en JSON string.
+  console.log('sparad tabell: ' + JSON.stringify(savedTable));
 }
 
 init();
