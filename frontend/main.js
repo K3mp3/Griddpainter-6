@@ -59,6 +59,7 @@ function showGrid() {
         const cell = document.createElement('td');
         let cellId = `cell_${i}_${r}`;
         cell.id = cellId
+        cell.addEventListener("click", addColorToCell);
         cell.addEventListener("click", test);
         row.appendChild(cell);
     }
@@ -66,11 +67,19 @@ function showGrid() {
   }
   //socket.emit("grid", {grid: table})
   //console.log("table 1", table);
+ 
+  socket.emit("grid", {grid: table});
 
-  gridTableContainer.appendChild(table); 
+  socket.on('updateGrid', (data) => {
+    console.log('grid updated:', data);
+    // update the grid with the received data
+    const grid = data.grid;
+    console.log("grid data", grid)
+    gridTableContainer.appendChild(table);
+  });
 }
 
-function test(e) {
+function addColorToCell(e) {
   const cellId = e.currentTarget.id;
   const cell = e.currentTarget;
 
@@ -91,6 +100,10 @@ function test(e) {
       //cell.style.background = colorInput.value;
     }
   })
+}
+
+function test() {
+  
 }
 
 const saveBtn = document.createElement('button');

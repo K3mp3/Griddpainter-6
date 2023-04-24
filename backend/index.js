@@ -44,6 +44,13 @@ io.on("connection", (socket) => {
     })
 })
 
+io.on("connection", (socket) => {
+    socket.on('grid', (data) => {
+        console.log('grid data received:', data.grid);
+        io.emit('updateGrid', data.grid);
+      });
+})
+
 app.post("/savetable", function(req, res) {
     res.json("funkar");
 })
