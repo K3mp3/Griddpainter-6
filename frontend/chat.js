@@ -9,11 +9,7 @@ const chatBox = document.querySelector('#chat-box');
 chatOutput.classList.add("chat-output");
 
 export default function init() {
-    showChatBtn.innerText = "Chat";
-
     chatBox.appendChild(chatContainer)
-    chatBox.appendChild(showChatBtn)
-    
 }
 
 function createChat() {
