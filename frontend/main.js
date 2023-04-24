@@ -4,7 +4,6 @@ import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 const socket = io("http://localhost:3000");
 
 const gridTableContainer = document.querySelector('#grid-table') 
-const userName = document.getElementById('userName');
 
 // landingpage
 const firstPageContainer = document.getElementById('firstPageContainer');
@@ -43,16 +42,12 @@ function landingPage() {
         const gridChatContainer = document.getElementById('gridChatContainer');
         gridChatContainer.style.display = "flex";
         landingPage.style.display = "none";
-        getUserName();
     });
 
 };
 
 landingPage();
 
-function getUserName () {
-  userName.innerText = inputNickName.value;
-}
 
 const table = document.createElement('table');
 console.log("table", table);
@@ -63,11 +58,11 @@ for (let i = 1; i <= 15; i++) {
         let cellID = `cell_${i}_${r}`;
         cell.id = cellID;
         cell.addEventListener('click', () => {
-            console.log(cellID);
+            console.log("cellID", cellID);
             console.log("colorInput", colorInput.value, colorInput);
             cell.style.background = colorInput.value;
             //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
-
+            saveTableToServer(cellID);
         });
         row.appendChild(cell);
     }
@@ -82,20 +77,37 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
-function saveTable() {
-  console.log("table", table);
+function saveTableToServer(cellId) {
+  console.log("cellId saveTableToServer", cellId);
+  socket.emit("table", {table: table, color: colorInput.value, cellId: cellId})
+  
+  getTable();
+}
 
-  fetch("http://localhost:3000/grid/saveTable", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({table: table}),
+function getTable() {
+  socket.on("table", function(table) {
+    console.log("table", table);
+    
   })
-  .then(res => res.json())
-  .then(data => {
-    console.log("data", data);
-  })
+}
+
+function saveTable() {
+  console.log('test');
+  let savedTable = [];
+  const tdId = document.querySelectorAll("td")
+
+    
+  for (let i = 0; i < tdId.length ; i++) {
+    let id = tdId[i].id
+    let color = tdId[i].style.background
+    
+    let obj = {
+      id: id,
+      color: color
+    }
+    
+    savedTable.push(obj)
+  }
 }
 
 init();

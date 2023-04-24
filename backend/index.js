@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://127.0.0.1:5500",
+        origin: "http://192.168.0.145:5500",
         methods: ["GET", "POST"]
     }
 });
@@ -35,6 +35,13 @@ io.on("connection", (socket) => {
         io.emit("chat", arg)
     })
 
+})
+
+io.on("connection", (socket) => {
+    socket.on("table", (arg) => {
+        console.log("incoming table", arg);
+        io.emit("table", arg);
+    })
 })
 
 app.post("/savetable", function(req, res) {
