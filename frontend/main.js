@@ -44,6 +44,11 @@ function landingPage() {
         const gridChatContainer = document.getElementById('gridChatContainer');
         gridChatContainer.style.display = "flex";
         landingPage.style.display = "none";
+<<<<<<< HEAD
+=======
+        getUserName();
+        createGrid();
+>>>>>>> 9bac14d2985b301286abe049c9265df42e587816
     });
 
 };
@@ -51,6 +56,7 @@ function landingPage() {
 landingPage();
 showGrid();
 
+<<<<<<< HEAD
 function showGrid() {
   console.log("showGrid");
   for (let i = 1; i <= 15; i++) {
@@ -60,6 +66,29 @@ function showGrid() {
         let cellId = `cell_${i}_${r}`;
         cell.id = cellId
         cell.addEventListener("click", test);
+=======
+function getUserName () {
+  userName.innerText = inputNickName.value;
+}
+
+const table = document.createElement('table');
+
+function createGrid (){
+
+console.log("table", table);
+for (let i = 1; i <= 15; i++) {
+    const row = document.createElement('tr');
+    for (let r = 1; r <= 15; r++) {
+        const cell = document.createElement('td');
+        let cellID = `cell_${i}_${r}`;
+        cell.id = cellID;
+        cell.addEventListener('click', () => {
+            console.log("cellID", cellID);
+            console.log("colorInput", colorInput.value, colorInput);
+            cell.style.background = colorInput.value;
+            //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
+        });
+>>>>>>> 9bac14d2985b301286abe049c9265df42e587816
         row.appendChild(cell);
     }
     table.appendChild(row);
@@ -99,6 +128,7 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
+<<<<<<< HEAD
 function saveTableToServer(cellId) {
   console.log("cellId saveTableToServer", cellId);
   socket.emit("table", {table: table, color: colorInput.value, cellId: cellId})
@@ -112,6 +142,39 @@ function getTable() {
 
     
   })
+=======
+}
+
+let savedTables = [];
+let savedTable = []
+
+function saveTable() {
+  
+  savedTable
+  const tdId = document.querySelectorAll("td")
+
+  savedTable = []
+    
+  for (let i = 0; i < tdId.length ; i++) {
+    let id = tdId[i].id
+    let color = tdId[i].style.background
+    
+    let obj = {
+      id: id,
+      color: color
+    }
+
+    if(id && color){
+      savedTable.push(obj)
+    }
+  }
+  
+  savedTables.push(savedTable)
+  console.log(savedTables)
+  table.innerHTML = ""
+  gridTableContainer.innerHTML = ""
+  createGrid()
+>>>>>>> 9bac14d2985b301286abe049c9265df42e587816
 }
 
 function saveTable() {
