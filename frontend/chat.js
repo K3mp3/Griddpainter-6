@@ -16,7 +16,6 @@ export default function init() {
     
 }
 
-
 function createChat() {
     const chatInput = document.createElement("input");
     const sendChatBtn = document.createElement("button");
@@ -58,7 +57,12 @@ function getChatMsg() {
     chatOutput.innerHTML += "<li>" + arg.user + ": " + arg.chat + "</li>";
     console.log("chatOutput", chatOutput);
     chatBox.appendChild(chatOutput);
+
+    // Auto-scroll to the bottom of the chat box
+    chatBox.scrollTop = chatBox.scrollHeight;
+
 })
 }
 
 createChat();
+
