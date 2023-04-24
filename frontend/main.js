@@ -76,12 +76,15 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
-let savedTable = [];
+let savedTables = [];
+let savedTable = []
 
 function saveTable() {
   
+  savedTable
   const tdId = document.querySelectorAll("td")
 
+  savedTable = []
     
   for (let i = 0; i < tdId.length ; i++) {
     let id = tdId[i].id
@@ -91,13 +94,14 @@ function saveTable() {
       id: id,
       color: color
     }
+
     if(id && color){
       savedTable.push(obj)
     }
-    
-    
-    
-  }console.log(savedTable)
+  }
+  
+  savedTables.push(savedTable)
+  console.log(savedTables)
   
 }
 
