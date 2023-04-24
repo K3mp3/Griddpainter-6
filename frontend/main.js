@@ -4,6 +4,7 @@ import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 const socket = io("http://localhost:3000");
 
 const gridTableContainer = document.querySelector('#grid-table') 
+const userName = document.getElementById('userName');
 
 // landingpage
 const firstPageContainer = document.getElementById('firstPageContainer');
@@ -42,12 +43,17 @@ function landingPage() {
         const gridChatContainer = document.getElementById('gridChatContainer');
         gridChatContainer.style.display = "flex";
         landingPage.style.display = "none";
+        getUserName();
         createGrid();
     });
 
 };
 
 landingPage();
+
+function getUserName () {
+  userName.innerText = inputNickName.value;
+}
 
 const table = document.createElement('table');
 

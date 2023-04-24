@@ -12,7 +12,6 @@ export default function init() {
     chatBox.appendChild(chatContainer)
 }
 
-
 function createChat() {
     const chatInput = document.createElement("input");
     const sendChatBtn = document.createElement("button");
@@ -45,16 +44,26 @@ getChatMsg();
 
 function getChatMsg() {
     socket.on("chat", (arg) => {
-    console.log("chat", arg);
+        const date = new Date();
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const time = hours + ":" + minutes;
 
-    const username = document.createElement('p')
-    username.innerText = 
-    
-    chatOutput.classList.add('chat-msg')
-    chatOutput.innerHTML += "<li>" + arg.user + ": " + arg.chat + "</li>";
-    console.log("chatOutput", chatOutput);
-    chatBox.appendChild(chatOutput);
-})
+        console.log("chat", arg);
+
+        const username = document.createElement('p')
+        username.innerText = 
+        
+        chatOutput.classList.add('chat-msg')
+        chatOutput.innerHTML += "<li> [" + time + "] " + arg.user +  ": <br>" + arg.chat + " </li>";
+        console.log("chatOutput", chatOutput);
+        chatBox.appendChild(chatOutput);
+
+        // Auto-scroll to the bottom of the chat box
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+    })
 }
 
 createChat();
+

@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
   background-color: rgb(61, 61, 61);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Landing page */
@@ -64,11 +66,10 @@ body {
 }
 
 /* chat */
-
 .chat-container{
   height: 540px;
   width: 500px;
-  background-color: rgb(145, 24, 24);
+  background-color: rgba(134, 151, 173, 0.699);
   margin-top: 80px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -81,39 +82,38 @@ body {
   height: 400px;
   width: 400px;
   background-color: white;
-  border: black solid 2px;
+  border: black solid 0px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow-y: scroll;
 }
 
 .chat-msg li{
   list-style: none;
-  height: 30px;
-  width: fit-content;
-  max-width: 300px;
+  height: fit-content;
+  max-width: 360px;
   padding: 8px;
   line-height: 30px;
   margin: 0 auto;
-  border: black solid 2px;
-  border-radius: 5px;
   margin-top: 10px;
   margin-left: 10px;
+  font-size: 1rem;
 }
 
 .chat-input{
-  height: 50px;
-  width: 300px;
+  height: 40px;
+  width: 310px;
   margin-top: 30px;
   margin-left: 50px;
-  border: black solid 2px;
+  border: black solid 0px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .send-chat-btn{
-  height: 50px;
+  height: 40px;
   width: 80px;
-  background-color: black;
+  background-color: rgb(77, 84, 95);
   color: white;
   border: none;
   margin-left: 5px;
@@ -123,12 +123,13 @@ body {
 }
 
 /* grid */
-td {border: 1px solid black; width: 30px; height: 30px;}
-
-.red {
-    background-color: red;
-  }
+td {
+  border: 1px solid black; 
+  width: 30px; 
+  height: 30px;
+}
 
   li:nth-child(odd) {
     background-color: lightsteelblue;
+    border-radius: 10px;
 }
