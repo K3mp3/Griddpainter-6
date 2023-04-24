@@ -44,6 +44,7 @@ function landingPage() {
         gridChatContainer.style.display = "flex";
         landingPage.style.display = "none";
         getUserName();
+        createGrid();
     });
 
 };
@@ -55,6 +56,9 @@ function getUserName () {
 }
 
 const table = document.createElement('table');
+
+function createGrid (){
+
 console.log("table", table);
 for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
@@ -63,11 +67,10 @@ for (let i = 1; i <= 15; i++) {
         let cellID = `cell_${i}_${r}`;
         cell.id = cellID;
         cell.addEventListener('click', () => {
-            console.log(cellID);
+            console.log("cellID", cellID);
             console.log("colorInput", colorInput.value, colorInput);
             cell.style.background = colorInput.value;
             //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
-
         });
         row.appendChild(cell);
     }
@@ -82,20 +85,37 @@ gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
 
-function saveTable() {
-  console.log("table", table);
+}
 
-  fetch("http://localhost:3000/grid/saveTable", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({table: table}),
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log("data", data);
-  })
+let savedTables = [];
+let savedTable = []
+
+function saveTable() {
+  
+  savedTable
+  const tdId = document.querySelectorAll("td")
+
+  savedTable = []
+    
+  for (let i = 0; i < tdId.length ; i++) {
+    let id = tdId[i].id
+    let color = tdId[i].style.background
+    
+    let obj = {
+      id: id,
+      color: color
+    }
+
+    if(id && color){
+      savedTable.push(obj)
+    }
+  }
+  
+  savedTables.push(savedTable)
+  console.log(savedTables)
+  table.innerHTML = ""
+  gridTableContainer.innerHTML = ""
+  createGrid()
 }
 
 init();
