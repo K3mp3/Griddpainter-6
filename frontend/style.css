@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
   background-color: rgb(61, 61, 61);
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Landing page */
@@ -64,7 +66,6 @@ body {
 }
 
 /* chat */
-
 .chat-container{
   height: 540px;
   width: 500px;
@@ -89,16 +90,16 @@ body {
 
 .chat-msg li{
   list-style: none;
-  height: 30px;
-  width: fit-content;
-  max-width: 300px;
+  height: fit-content;
+  max-width: 350px;
   padding: 8px;
   line-height: 30px;
   margin: 0 auto;
-  border: black solid 2px;
+  border: black solid 1px;
   border-radius: 5px;
   margin-top: 10px;
   margin-left: 10px;
+  font-size: 0.9rem;
 }
 
 .chat-input{
