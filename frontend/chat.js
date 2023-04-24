@@ -46,6 +46,11 @@ function sendChat() {
 
 getChatMsg();
 
+const date = new Date();
+const hours = date.getHours().toString().padStart(2, '0');
+const minutes = date.getMinutes().toString().padStart(2, '0');
+const time = hours + ":" + minutes;
+
 function getChatMsg() {
     socket.on("chat", (arg) => {
     console.log("chat", arg);
@@ -54,7 +59,7 @@ function getChatMsg() {
     username.innerText = 
     
     chatOutput.classList.add('chat-msg')
-    chatOutput.innerHTML += "<li>" + arg.user + ": " + arg.chat + "</li>";
+    chatOutput.innerHTML += "<li> [" + time + "] " + arg.user +  ": <br>" + arg.chat + " </li>";
     console.log("chatOutput", chatOutput);
     chatBox.appendChild(chatOutput);
 

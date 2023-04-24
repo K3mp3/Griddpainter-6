@@ -91,12 +91,11 @@ body {
 .chat-msg li{
   list-style: none;
   height: fit-content;
-  width: fit-content;
-  max-width: 300px;
+  max-width: 350px;
   padding: 8px;
   line-height: 30px;
   margin: 0 auto;
-  border: black solid 2px;
+  border: black solid 1px;
   border-radius: 5px;
   margin-top: 10px;
   margin-left: 10px;
