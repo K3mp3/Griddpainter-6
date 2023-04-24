@@ -62,7 +62,6 @@ for (let i = 1; i <= 15; i++) {
             console.log("colorInput", colorInput.value, colorInput);
             cell.style.background = colorInput.value;
             //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
-            saveTableToServer(cellID);
         });
         row.appendChild(cell);
     }
@@ -92,8 +91,11 @@ function saveTable() {
       id: id,
       color: color
     }
+    if(id && color){
+      savedTable.push(obj)
+    }
     
-    savedTable.push(obj)
+    
     
   }console.log(savedTable)
   
