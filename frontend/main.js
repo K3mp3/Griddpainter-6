@@ -42,14 +42,17 @@ function landingPage() {
         const gridChatContainer = document.getElementById('gridChatContainer');
         gridChatContainer.style.display = "flex";
         landingPage.style.display = "none";
+        createGrid();
     });
 
 };
 
 landingPage();
 
-
 const table = document.createElement('table');
+
+function createGrid (){
+
 console.log("table", table);
 for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
@@ -75,6 +78,8 @@ saveBtn.innerText = "Save";
 gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
+
+}
 
 let savedTables = [];
 let savedTable = []
@@ -102,7 +107,9 @@ function saveTable() {
   
   savedTables.push(savedTable)
   console.log(savedTables)
-  
+  table.innerHTML = ""
+  gridTableContainer.innerHTML = ""
+  createGrid()
 }
 
 init();
