@@ -5,6 +5,8 @@ const socket = io("http://localhost:3000");
 
 const gridTableContainer = document.querySelector('#grid-table') 
 
+const table = document.createElement('table');
+
 // landingpage
 const firstPageContainer = document.getElementById('firstPageContainer');
 
@@ -36,7 +38,7 @@ function landingPage() {
         // Emit the nickname event to the server
         socket.emit('nickname', nickname);
 
-        console.log(nickname + " " + color);
+        //console.log(nickname + " " + color);
 
         //show grid-and-chat-container if submit is pressed
         const gridChatContainer = document.getElementById('gridChatContainer');
@@ -47,29 +49,49 @@ function landingPage() {
 };
 
 landingPage();
+showGrid();
 
-
-const table = document.createElement('table');
-console.log("table", table);
-for (let i = 1; i <= 15; i++) {
+function showGrid() {
+  console.log("showGrid");
+  for (let i = 1; i <= 15; i++) {
     const row = document.createElement('tr');
     for (let r = 1; r <= 15; r++) {
         const cell = document.createElement('td');
-        let cellID = `cell_${i}_${r}`;
-        cell.id = cellID;
-        cell.addEventListener('click', () => {
-            console.log("cellID", cellID);
-            console.log("colorInput", colorInput.value, colorInput);
-            cell.style.background = colorInput.value;
-            //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
-            saveTableToServer(cellID);
-        });
+        let cellId = `cell_${i}_${r}`;
+        cell.id = cellId
+        cell.addEventListener("click", test);
         row.appendChild(cell);
     }
     table.appendChild(row);
+  }
+  //socket.emit("grid", {grid: table})
+  //console.log("table 1", table);
+
+  gridTableContainer.appendChild(table); 
 }
 
-gridTableContainer.appendChild(table);
+function test(e) {
+  const cellId = e.currentTarget.id;
+  const cell = e.currentTarget;
+
+  socket.emit("table", {color: colorInput.value, cellId: cellId})
+
+  console.log("cellId", cellId);
+  console.log("cell", cell);
+  console.log("colorInput", colorInput.value, colorInput);
+  
+  socket.on("table", function(grid) {
+    console.log("table", table);
+    //cell.style.background = grid.color;
+    console.log("grid", grid.color);
+    if(cellId === grid.cellId) {
+      console.log("ja", grid.color);
+      cell.style.background = grid.color;
+    } else {
+      //cell.style.background = colorInput.value;
+    }
+  })
+}
 
 const saveBtn = document.createElement('button');
 saveBtn.innerText = "Save";
@@ -91,7 +113,6 @@ function getTable() {
     
   })
 }
-
 
 function saveTable() {
   const tdId = document.querySelectorAll("td");
