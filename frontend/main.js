@@ -67,10 +67,9 @@ for (let i = 1; i <= 15; i++) {
         let cellID = `cell_${i}_${r}`;
         cell.id = cellID;
         cell.addEventListener('click', () => {
-            console.log("cellID", cellID);
-            console.log("colorInput", colorInput.value, colorInput);
+            //console.log(cellID + colorInput.value);
             cell.style.background = colorInput.value;
-            //cell.classList.add('red');  // add class "red" to the clicked cell (change later to the color that user pick)
+            socket.emit('cellClicked', { cellID: cellID, color: colorInput.value }); // << sending each cell clicked with cellID and color to server
         });
         row.appendChild(cell);
     }
@@ -86,6 +85,14 @@ gridTableContainer.appendChild(saveBtn);
 saveBtn.addEventListener("click", saveTable);
 
 }
+
+// << listen for the updateCell event and update cell with color
+socket.on('updateCell', (data) => {
+  const cell = document.getElementById(data.cellID);
+  cell.style.background = data.color;
+});
+
+
 
 let savedTables = [];
 let savedTable = []

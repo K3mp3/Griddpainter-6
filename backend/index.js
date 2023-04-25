@@ -10,13 +10,19 @@ app.get("/", (req, res) => {
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://localhost:3005",
+        origin: "http://127.0.0.1:5500",
         methods: ["GET", "POST"]
     }
 });
 
 // Listen for a connection event
 io.on("connection", (socket) => {
+
+    // << listen to cellClicked event and then broadcast it to all connected clients using io.emit
+    socket.on('cellClicked', (data) => {
+        console.log(`Cell ${data.cellID} clicked with color ${data.color}`);
+        io.emit('updateCell', data);
+      });
 
     socket.on('nickname', (nickname) => {
         console.log(`${nickname} has connected to the chat`);
@@ -37,10 +43,5 @@ io.on("connection", (socket) => {
 
 })
 
-io.on("connection", (socket) => {
-    socket.on("table", (arg) => {
-        console.log("incoming table", arg);
-    })
-})
 
 server.listen(3000);
