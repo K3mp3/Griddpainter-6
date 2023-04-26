@@ -149,6 +149,5 @@ function createSavedTableButtons() {
   }
 }
 
-
-
+createSavedTableButtons();
 init();
