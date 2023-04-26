@@ -126,6 +126,14 @@ function saveTable() {
   createSavedTableButtons();
 }
 
+function restoreSavedTable(savedTable) {
+  for (let i = 0; i < savedTable.length; i++) {
+    let cell = document.getElementById(savedTable[i].id)
+    cell.style.background = savedTable[i].color
+  }
+}
+
+
 function createSavedTableButtons() {
   
   for (let i = 0; i < savedTables.length; i++) {
