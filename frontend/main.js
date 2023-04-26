@@ -123,6 +123,7 @@ function saveTable() {
   table.innerHTML = ""
   gridTableContainer.innerHTML = ""
   createGrid()
+  createSavedTableButtons();
 }
 
 function createSavedTableButtons() {
@@ -149,5 +150,4 @@ function createSavedTableButtons() {
   }
 }
 
-createSavedTableButtons();
 init();
