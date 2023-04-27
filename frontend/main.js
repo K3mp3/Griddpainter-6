@@ -133,7 +133,7 @@ function restoreSavedTable(savedTable) {
   }
 }
 
-
+/*
 function createSavedTableButtons() {
   
   for (let i = 0; i < savedTables.length; i++) {
@@ -165,6 +165,47 @@ function createSavedTableButtons() {
     })
 
     document.body.appendChild(button)
+  }
+}
+*/
+
+function createSavedTableButtons() {
+ 
+  for (let i = 0; i < savedTables.length; i++) {
+    let savedTableData = savedTables[i]
+
+
+    let buttonExists = false
+    let buttons = document.querySelectorAll("button[data-saved-table]")
+    buttons.forEach(function(button) {
+      let buttonSavedTable = JSON.parse(button.getAttribute("data-saved-table"))
+      if (JSON.stringify(buttonSavedTable) === JSON.stringify(savedTableData)) {
+        buttonExists = true
+      }
+    })
+
+    if (!buttonExists) {
+
+      let button = document.createElement("button")
+      button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
+      button.innerHTML = "Restore saved table " + (i + 1)
+
+
+      button.addEventListener("click", function() {
+
+        let savedTableData = this.getAttribute("data-saved-table")
+        let savedTable = JSON.parse(savedTableData)
+
+
+        table.innerHTML = ""
+        gridTableContainer.innerHTML = ""
+        createGrid()
+        restoreSavedTable(savedTable)
+      })
+
+
+      document.body.appendChild(button)
+    }
   }
 }
 
