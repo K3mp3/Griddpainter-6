@@ -153,6 +153,7 @@ function createSavedTableButtons() {
     if (!buttonExists) {
 
       let button = document.createElement("button")
+      button.classList.add('show-saved-img-btn');
       button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
       button.innerHTML = "Restore saved table " + (i + 1)
 
