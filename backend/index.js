@@ -34,6 +34,12 @@ io.on("connection", (socket) => {
         });
     })
 
+
+    socket.on('clear board', () => {
+        console.log('Rensa grid för alla användare')
+        io.emit('clear board')
+    })
+
     socket.emit("chat", {chat: "Welcome", user: "Server-bot"})
 
     socket.on("chat", (arg) => {

@@ -118,8 +118,16 @@ function saveTable() {
     }
   }
   
-  savedTables.push(savedTable)
-  console.log(savedTables)
+  // Kontrollerar om "grid" är tom innan "save"
+  if (savedTable.length > 0) {
+    savedTables.push(savedTable);
+    console.log(savedTables);
+  } else {
+    console.log('Table is empty. Not saving.');
+  }  
+
+  //savedTables.push(savedTable)
+  //console.log(savedTables)
   table.innerHTML = ""
   gridTableContainer.innerHTML = ""
   createGrid()
@@ -182,9 +190,16 @@ clearGridBtn.addEventListener("click", function() {
 
   table.innerHTML = ""
   gridTableContainer.innerHTML = ""
+  socket.on('clear board', () => {
+    console.log('Clearing board for all players')
+  
+    table.innerHTML = ""
+    gridTableContainer.innerHTML = ""
+  
+    createGrid()
+  })
 
-
-  createGrid()
+  //createGrid()
 })
 
 
