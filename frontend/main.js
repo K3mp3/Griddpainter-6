@@ -83,7 +83,7 @@ saveBtn.innerText = "Save";
 gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
-
+restoreTable();
 }
 
 // << listen for the updateCell event and update cell with color
@@ -118,16 +118,8 @@ function saveTable() {
     }
   }
   
-  // Kontrollerar om "grid" är tom innan "save"
-  if (savedTable.length > 0) {
-    savedTables.push(savedTable);
-    console.log(savedTables);
-  } else {
-    console.log('Table is empty. Not saving.');
-  }  
-
-  //savedTables.push(savedTable)
-  //console.log(savedTables)
+  savedTables.push(savedTable)
+  console.log(savedTables)
   table.innerHTML = ""
   gridTableContainer.innerHTML = ""
   createGrid()
@@ -182,30 +174,22 @@ function createSavedTableButtons() {
   }
 }
 
+function restoreTable() {
+  console.log("Funkar");
+  const restoreBtn = document.createElement("button")
+  restoreBtn.innerText = "Play again";
+  gridTableContainer.appendChild(restoreBtn);
 
-const clearGridBtn = document.getElementById("clear-grid-btn")
-
-
-clearGridBtn.addEventListener("click", function() {
-
-  table.innerHTML = ""
-  gridTableContainer.innerHTML = ""
-  socket.on('clear board', () => {
-    console.log('Clearing board for all players')
-  
-    table.innerHTML = ""
-    gridTableContainer.innerHTML = ""
-    socket.emit('clear board')
-    createGrid()
-    clearBoard()
+  restoreBtn.addEventListener("click", function() {
+    socket.emit("restoreTable");
   })
 
-  //createGrid()
-})
-
-function clearBoard() {
-  socket.emit('clear board')
 }
 
+socket.on("restoreTable", (data) => {
+  table.innerHTML = "";
+  gridTableContainer.innerHTML = "";
+  createGrid();
+})
 
 init();

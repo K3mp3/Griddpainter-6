@@ -47,6 +47,11 @@ io.on("connection", (socket) => {
         io.emit("chat", arg)
     })
 
+    socket.on("restoreTable", (arg) => {
+        console.log("restore table", arg);
+        io.emit("restoreTable", arg);
+    })
+
 })
 
 
