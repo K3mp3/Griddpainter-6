@@ -197,11 +197,15 @@ clearGridBtn.addEventListener("click", function() {
     gridTableContainer.innerHTML = ""
     socket.emit('clear board')
     createGrid()
+    clearBoard()
   })
 
   //createGrid()
 })
 
+function clearBoard() {
+  socket.emit('clear board')
+}
 
 
 init();
