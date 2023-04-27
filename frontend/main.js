@@ -79,6 +79,7 @@ for (let i = 1; i <= 15; i++) {
 gridTableContainer.appendChild(table);
 
 const saveBtn = document.createElement('button');
+saveBtn.classList.add('save-btn');
 saveBtn.innerText = "Save";
 gridTableContainer.appendChild(saveBtn);
 

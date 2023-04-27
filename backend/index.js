@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: "http://192.168.0.145:5500",
+        origin: "http://localhost:3005",
         methods: ["GET", "POST"]
     }
 });
