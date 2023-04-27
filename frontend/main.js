@@ -174,4 +174,18 @@ function createSavedTableButtons() {
   }
 }
 
+
+const clearGridBtn = document.getElementById("clear-grid-btn")
+
+
+clearGridBtn.addEventListener("click", function() {
+
+  table.innerHTML = ""
+  gridTableContainer.innerHTML = ""
+
+
+  createGrid()
+})
+
+
 init();
