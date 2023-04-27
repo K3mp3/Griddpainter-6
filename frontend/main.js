@@ -139,15 +139,15 @@ function createSavedTableButtons() {
   for (let i = 0; i < savedTables.length; i++) {
     let savedTableData = savedTables[i]
     
-    /* 
-    Nedan kod tar bort duplikationen av "button" vid varje Save, men då blir det bara en bild och inte fler
+    
+    //Nedan kod tar bort duplikationen av "button" vid varje Save, men då blir det bara en bild och inte fler
     
     let buttons = document.querySelectorAll("button[data-saved-table]")
     buttons.forEach(function(button) {
       button.parentNode.removeChild(button)
     })
     
-    */
+    
 
     let button = document.createElement("button")
     button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
