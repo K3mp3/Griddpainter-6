@@ -153,7 +153,7 @@ function createSavedTableButtons() {
 
       let button = document.createElement("button")
       button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
-      button.innerHTML = "Restore saved table " + (i + 1)
+      button.innerHTML = "Picture " + (i + 1)
 
 
       button.addEventListener("click", function() {
