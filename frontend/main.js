@@ -195,12 +195,13 @@ clearGridBtn.addEventListener("click", function() {
   
     table.innerHTML = ""
     gridTableContainer.innerHTML = ""
-  
+    socket.emit('clear board')
     createGrid()
   })
 
   //createGrid()
 })
+
 
 
 init();
