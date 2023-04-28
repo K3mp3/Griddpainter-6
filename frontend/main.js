@@ -117,9 +117,18 @@ function saveTable() {
       savedTable.push(obj)
     }
   }
+
+    // Ett spel sparas endast om grid inte är tom
+    if (savedTable.length > 0) {
+      savedTables.push(savedTable);
+      console.log(savedTables);
+    } else {
+      console.log('The grid is empty');
+    }
+
   
-  savedTables.push(savedTable)
-  console.log(savedTables)
+  //savedTables.push(savedTable)
+  //console.log(savedTables)
   table.innerHTML = ""
   gridTableContainer.innerHTML = ""
   createGrid()
