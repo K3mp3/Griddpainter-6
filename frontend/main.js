@@ -188,6 +188,7 @@ function restoreTable() {
   console.log("Funkar");
   const restoreBtn = document.createElement("button")
   restoreBtn.innerText = "Play again";
+  restoreBtn.classList.add('clear-grid-btn')
   gridTableContainer.appendChild(restoreBtn);
 
   restoreBtn.addEventListener("click", function() {
@@ -196,7 +197,7 @@ function restoreTable() {
 
 }
 
-restoreBtn.classList.add('clear-grid-btn')
+
 
 socket.on("restoreTable", (data) => {
   table.innerHTML = "";
