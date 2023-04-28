@@ -155,7 +155,7 @@ function createSavedTableButtons() {
       let button = document.createElement("button")
       button.classList.add('show-saved-img-btn');
       button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
-      button.innerHTML = "Restore saved table " + (i + 1)
+      button.innerHTML = "Saved image " + (i + 1)
 
 
       button.addEventListener("click", function() {
@@ -178,7 +178,7 @@ function createSavedTableButtons() {
 
 
 const clearGridBtn = document.getElementById("clear-grid-btn")
-
+clearGridBtn.classList.add('clear-grid-btn')
 
 clearGridBtn.addEventListener("click", function() {
 
