@@ -84,7 +84,7 @@ saveBtn.innerText = "Save";
 gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
-
+restoreTable();
 }
 
 // << listen for the updateCell event and update cell with color
@@ -119,8 +119,16 @@ function saveTable() {
     }
   }
   
-  savedTables.push(savedTable)
-  console.log(savedTables)
+  // Ett spel sparas endast om grid inte är tom
+  if (savedTable.length > 0) {
+    savedTables.push(savedTable);
+    console.log(savedTables);
+  } else {
+    console.log('The grid is empty');
+  }
+
+  //savedTables.push(savedTable)
+  //console.log(savedTables)
   table.innerHTML = ""
   gridTableContainer.innerHTML = ""
   createGrid()
@@ -155,7 +163,7 @@ function createSavedTableButtons() {
       let button = document.createElement("button")
       button.classList.add('show-saved-img-btn');
       button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
-      button.innerHTML = "Saved image " + (i + 1)
+      button.innerHTML = "Picture " + (i + 1)
 
 
       button.addEventListener("click", function() {
@@ -176,18 +184,24 @@ function createSavedTableButtons() {
   }
 }
 
+function restoreTable() {
+  console.log("Funkar");
+  const restoreBtn = document.createElement("button")
+  restoreBtn.innerText = "Play again";
+  gridTableContainer.appendChild(restoreBtn);
 
-const clearGridBtn = document.getElementById("clear-grid-btn")
-clearGridBtn.classList.add('clear-grid-btn')
+  restoreBtn.addEventListener("click", function() {
+    socket.emit("restoreTable");
+  })
 
-clearGridBtn.addEventListener("click", function() {
+}
 
-  table.innerHTML = ""
-  gridTableContainer.innerHTML = ""
+restoreBtn.classList.add('clear-grid-btn')
 
-
-  createGrid()
+socket.on("restoreTable", (data) => {
+  table.innerHTML = "";
+  gridTableContainer.innerHTML = "";
+  createGrid();
 })
-
 
 init();
