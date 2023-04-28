@@ -79,6 +79,7 @@ for (let i = 1; i <= 15; i++) {
 gridTableContainer.appendChild(table);
 
 const saveBtn = document.createElement('button');
+saveBtn.classList.add('save-btn');
 saveBtn.innerText = "Save";
 gridTableContainer.appendChild(saveBtn);
 
@@ -160,6 +161,7 @@ function createSavedTableButtons() {
     if (!buttonExists) {
 
       let button = document.createElement("button")
+      button.classList.add('show-saved-img-btn');
       button.setAttribute("data-saved-table", JSON.stringify(savedTableData))
       button.innerHTML = "Picture " + (i + 1)
 
@@ -186,6 +188,7 @@ function restoreTable() {
   console.log("Funkar");
   const restoreBtn = document.createElement("button")
   restoreBtn.innerText = "Play again";
+  restoreBtn.classList.add('clear-grid-btn')
   gridTableContainer.appendChild(restoreBtn);
 
   restoreBtn.addEventListener("click", function() {
@@ -193,6 +196,8 @@ function restoreTable() {
   })
 
 }
+
+
 
 socket.on("restoreTable", (data) => {
   table.innerHTML = "";

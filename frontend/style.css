@@ -76,6 +76,42 @@ body {
  
 }
 
+.save-btn{
+  height: 40px;
+  width: 80px;
+  background-color: rgb(104, 148, 133);
+  color: white;
+  border: none;
+  margin-left: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 30px;
+}
+
+.show-saved-img-btn{
+  height: 40px;
+  width: 150px;
+  background-color: rgb(66, 110, 157);
+  color: white;
+  border: none;
+  margin-left: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 30px;
+}
+
+.clear-grid-btn{
+  height: 40px;
+  width: 80px;
+  background-color: rgb(199, 87, 77);
+  color: white;
+  border: none;
+  margin-left: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 30px;
+}
+
 .chat-box{
   margin: 0 auto;
   margin-top: 20px;
