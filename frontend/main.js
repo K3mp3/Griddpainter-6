@@ -83,7 +83,7 @@ saveBtn.innerText = "Save";
 gridTableContainer.appendChild(saveBtn);
 
 saveBtn.addEventListener("click", saveTable);
-
+restoreTable();
 }
 
 // << listen for the updateCell event and update cell with color
@@ -182,18 +182,22 @@ function createSavedTableButtons() {
   }
 }
 
+function restoreTable() {
+  console.log("Funkar");
+  const restoreBtn = document.createElement("button")
+  restoreBtn.innerText = "Play again";
+  gridTableContainer.appendChild(restoreBtn);
 
-const clearGridBtn = document.getElementById("clear-grid-btn")
+  restoreBtn.addEventListener("click", function() {
+    socket.emit("restoreTable");
+  })
 
+}
 
-clearGridBtn.addEventListener("click", function() {
-
-  table.innerHTML = ""
-  gridTableContainer.innerHTML = ""
-
-
-  createGrid()
+socket.on("restoreTable", (data) => {
+  table.innerHTML = "";
+  gridTableContainer.innerHTML = "";
+  createGrid();
 })
-
 
 init();
